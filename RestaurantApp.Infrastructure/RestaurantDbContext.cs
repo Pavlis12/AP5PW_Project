@@ -13,6 +13,7 @@ namespace RestaurantApp.Infrastructure.Data
         public DbSet<MenuItem> MenuItems { get; set; } = null!;
         public DbSet<RestaurantTable> RestaurantTables { get; set; } = null!;
         public DbSet<Reservation> Reservations { get; set; } = null!;
+        public DbSet<ReservationItem> ReservationItems { get; set; } = null!;
         public DbSet<Review> Reviews { get; set; } = null!;
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)

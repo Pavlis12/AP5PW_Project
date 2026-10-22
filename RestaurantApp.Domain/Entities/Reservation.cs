@@ -13,10 +13,9 @@ namespace RestaurantApp.Domain.Entities
         public DateTime ReservationTime { get; set; }
         public int NumberOfPeople { get; set; }
         public string? Note { get; set; }
-
+        public ICollection<ReservationItem> PreorderedMeals { get; set; } = new List<ReservationItem>();
         public int RestaurantTableId { get; set; }
         public RestaurantTable RestaurantTable { get; set; } = null!;
 
-        public ICollection<Review> Reviews { get; set; } = new List<Review>();
     }
 }

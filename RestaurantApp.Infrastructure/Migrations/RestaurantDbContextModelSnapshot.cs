@@ -111,6 +111,32 @@ namespace RestaurantApp.Infrastructure.Migrations
                     b.ToTable("Reservations");
                 });
 
+            modelBuilder.Entity("RestaurantApp.Domain.Entities.ReservationItem", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<int>("MenuItemId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("Quantity")
+                        .HasColumnType("int");
+
+                    b.Property<int>("ReservationId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("MenuItemId");
+
+                    b.HasIndex("ReservationId");
+
+                    b.ToTable("ReservationItems");
+                });
+
             modelBuilder.Entity("RestaurantApp.Domain.Entities.RestaurantTable", b =>
                 {
                     b.Property<int>("Id")
@@ -150,12 +176,11 @@ namespace RestaurantApp.Infrastructure.Migrations
                     b.Property<int>("Rating")
                         .HasColumnType("int");
 
-                    b.Property<int>("ReservationId")
-                        .HasColumnType("int");
+                    b.Property<string>("ReviewerName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("ReservationId");
 
                     b.ToTable("Reviews");
                 });
@@ -182,13 +207,21 @@ namespace RestaurantApp.Infrastructure.Migrations
                     b.Navigation("RestaurantTable");
                 });
 
-            modelBuilder.Entity("RestaurantApp.Domain.Entities.Review", b =>
+            modelBuilder.Entity("RestaurantApp.Domain.Entities.ReservationItem", b =>
                 {
+                    b.HasOne("RestaurantApp.Domain.Entities.MenuItem", "MenuItem")
+                        .WithMany()
+                        .HasForeignKey("MenuItemId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
                     b.HasOne("RestaurantApp.Domain.Entities.Reservation", "Reservation")
-                        .WithMany("Reviews")
+                        .WithMany("PreorderedMeals")
                         .HasForeignKey("ReservationId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+
+                    b.Navigation("MenuItem");
 
                     b.Navigation("Reservation");
                 });
@@ -200,7 +233,7 @@ namespace RestaurantApp.Infrastructure.Migrations
 
             modelBuilder.Entity("RestaurantApp.Domain.Entities.Reservation", b =>
                 {
-                    b.Navigation("Reviews");
+                    b.Navigation("PreorderedMeals");
                 });
 
             modelBuilder.Entity("RestaurantApp.Domain.Entities.RestaurantTable", b =>

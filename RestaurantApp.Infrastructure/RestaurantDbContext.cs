@@ -20,7 +20,7 @@ namespace RestaurantApp.Infrastructure.Data
         {
             base.OnModelCreating(modelBuilder);
 
-            modelBuilder.Entity<MenuItem>().Property(m => m.Price);
+            modelBuilder.Entity<MenuItem>().Property(m => m.Price).HasPrecision(18, 2);
         }
     }
 }

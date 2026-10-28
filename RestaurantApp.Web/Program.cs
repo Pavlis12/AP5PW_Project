@@ -8,7 +8,7 @@ builder.Services.AddDbContext<RestaurantDbContext>(options =>
 options.UseSqlServer(connectionString));
 // Add services to the container.
 builder.Services.AddControllersWithViews();
-
+builder.Services.AddScoped(typeof(RestaurantApp.Application.Interfaces.IRepository<>), typeof(RestaurantApp.Infrastructure.Repositories.Repository<>));
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.

@@ -1,5 +1,6 @@
 using Microsoft.EntityFrameworkCore;
 using RestaurantApp.Infrastructure.Data;
+using Microsoft.AspNetCore.Authentication.Cookies;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -14,6 +15,20 @@ builder.Services.AddDefaultIdentity<Microsoft.AspNetCore.Identity.IdentityUser>(
 .AddRoles<Microsoft.AspNetCore.Identity.IdentityRole>() // Aktivuje podporu pro roli Admin
 .AddEntityFrameworkStores<RestaurantDbContext>();
 
+builder.Services.ConfigureApplicationCookie(options =>
+{
+    options.ReturnUrlParameter = CookieAuthenticationDefaults.ReturnUrlParameter;
+    options.Events.OnSignedIn = context =>
+    {
+        context.Response.Redirect("/Account/EnsureCustomerRole");
+        return Task.CompletedTask;
+    };
+});
+
+// Zpřístupní čtení cookies a HTTP kontextu
+builder.Services.AddHttpContextAccessor();
+// Propojí kolegův Interface s naší implementací
+builder.Services.AddScoped<RestaurantApp.Application.Interfaces.ICurrentUserService, RestaurantApp.Web.Services.CurrentUserService>();
 // Add services to the container.
 builder.Services.AddControllersWithViews();
 builder.Services.AddScoped(typeof(RestaurantApp.Application.Interfaces.IRepository<>), typeof(RestaurantApp.Infrastructure.Repositories.Repository<>));

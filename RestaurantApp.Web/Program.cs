@@ -23,6 +23,7 @@ builder.Services.ConfigureApplicationCookie(options =>
         context.Response.Redirect("/Account/EnsureCustomerRole");
         return Task.CompletedTask;
     };
+
 });
 
 // Zpřístupní čtení cookies a HTTP kontextu
@@ -63,6 +64,15 @@ app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapStaticAssets();
+
+app.MapControllerRoute(
+    name: "areas",
+    pattern: "{area:exists}/{controller=Home}/{action=Index}/{id?}");
+
+app.MapControllerRoute(
+    name: "default",
+    pattern: "{controller=Home}/{action=Index}/{id?}")
+    .WithStaticAssets();
 
 app.MapControllerRoute(
     name: "default",

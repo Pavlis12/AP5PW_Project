@@ -33,6 +33,7 @@ builder.Services.AddScoped<RestaurantApp.Application.Interfaces.ICurrentUserServ
 // Add services to the container.
 builder.Services.AddControllersWithViews();
 builder.Services.AddScoped(typeof(RestaurantApp.Application.Interfaces.IRepository<>), typeof(RestaurantApp.Infrastructure.Repositories.Repository<>));
+builder.Services.AddScoped<RestaurantApp.Application.Interfaces.IMenuService, RestaurantApp.Application.Services.MenuService>();
 var app = builder.Build();
 
 using (var scope = app.Services.CreateScope())

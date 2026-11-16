@@ -32,7 +32,7 @@ builder.Services.AddHttpContextAccessor();
 builder.Services.AddScoped<RestaurantApp.Application.Interfaces.ICurrentUserService, RestaurantApp.Web.Services.CurrentUserService>();
 // Add services to the container.
 builder.Services.AddControllersWithViews();
-builder.Services.AddScoped(typeof(RestaurantApp.Application.Interfaces.IRepository<>), typeof(RestaurantApp.Infrastructure.Repositories.Repository<>));
+builder.Services.AddScoped(typeof(RestaurantApp.Domain.Interfaces.IRepository<>), typeof(RestaurantApp.Infrastructure.Repositories.Repository<>));
 builder.Services.AddScoped<RestaurantApp.Application.Interfaces.IMenuService, RestaurantApp.Application.Services.MenuService>();
 var app = builder.Build();
 

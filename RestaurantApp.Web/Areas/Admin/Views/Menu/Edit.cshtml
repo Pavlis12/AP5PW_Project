@@ -1,0 +1,54 @@
+﻿@model RestaurantApp.Domain.Entities.MenuItem
+
+@{
+    ViewData["Title"] = "Upravit jídlo";
+}
+
+<h1>Upravit jídlo</h1>
+<hr />
+
+<div class="row">
+    <div class="col-md-6">
+        <form asp-action="Edit" method="post">
+            <div asp-validation-summary="All" class="text-danger mb-3"></div>
+            <input type="hidden" asp-for="Id" />
+
+            <div class="form-group mb-3">
+                <label asp-for="Title" class="control-label">Název jídla</label>
+                <input asp-for="Title" class="form-control" />
+                <span asp-validation-for="Title" class="text-danger"></span>
+            </div>
+
+            <div class="form-group mb-3">
+                <label asp-for="Description" class="control-label">Popis</label>
+                <textarea asp-for="Description" class="form-control" rows="3"></textarea>
+                <span asp-validation-for="Description" class="text-danger"></span>
+            </div>
+
+            <div class="form-group mb-3">
+                <label asp-for="Price" class="control-label">Cena (Kč)</label>
+                <input asp-for="Price" type="number" step="0.01" class="form-control" />
+                <span asp-validation-for="Price" class="text-danger"></span>
+            </div>
+
+            <div class="form-group mb-3">
+                <label asp-for="MenuCategoryId" class="control-label">Kategorie</label>
+                <select asp-for="MenuCategoryId" asp-items="ViewBag.Categories" class="form-select">
+                    <option value="">-- Vyberte kategorii --</option>
+                </select>
+                <span asp-validation-for="MenuCategoryId" class="text-danger"></span>
+            </div>
+
+            <div class="form-group mb-3 form-check">
+                <label class="form-check-label">
+                    <input class="form-check-input" asp-for="IsAvailable" /> Je dostupné
+                </label>
+            </div>
+
+            <div class="form-group">
+                <button type="submit" class="btn btn-primary">Uložit změny</button>
+                <a asp-action="Index" class="btn btn-secondary">Zpět na výpis</a>
+            </div>
+        </form>
+    </div>
+</div>

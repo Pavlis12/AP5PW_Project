@@ -9,5 +9,6 @@ namespace RestaurantApp.Application.Interfaces
         Task CreateMenuItemAsync(MenuItem menuItem);
         Task UpdateMenuItemAsync(MenuItem menuItem);
         Task DeleteMenuItemAsync(int id);
+        Task<IEnumerable<MenuCategory>> GetAllCategoriesAsync();
     }
 }

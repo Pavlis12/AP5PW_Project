@@ -1,13 +1,20 @@
 ﻿using RestaurantApp.Application.Interfaces;
+using RestaurantApp.Domain.Interfaces;
 using RestaurantApp.Domain.Entities;
+
 
 namespace RestaurantApp.Application.Services
 {
     public class MenuService : IMenuService
     {
         private readonly IRepository<MenuItem> _repository;
+        private readonly IRepository<MenuCategory> _categoryRepository;
 
-        // Využíváme Dependency Injection pro získání repozitáře
+        public MenuService(IRepository<MenuItem> repository, IRepository<MenuCategory> categoryRepository)
+        {
+            _repository = repository;
+            _categoryRepository = categoryRepository;
+        }
         public MenuService(IRepository<MenuItem> repository)
         {
             _repository = repository;
@@ -43,6 +50,10 @@ namespace RestaurantApp.Application.Services
                 _repository.Delete(item);
                 await _repository.SaveChangesAsync(); 
             }
+        }
+        public async Task<IEnumerable<MenuCategory>> GetAllCategoriesAsync()
+        {
+            return await _categoryRepository.GetAllAsync();
         }
     }
 }

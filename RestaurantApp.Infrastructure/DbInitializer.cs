@@ -15,7 +15,6 @@ namespace RestaurantApp.Infrastructure
                 await roleManager.CreateAsync(new IdentityRole("Admin"));
             }
 
-            
             if (!await roleManager.RoleExistsAsync("Customer"))
             {
                 await roleManager.CreateAsync(new IdentityRole("Customer"));
@@ -29,16 +28,29 @@ namespace RestaurantApp.Infrastructure
                 {
                     UserName = adminEmail,
                     Email = adminEmail,
-                    EmailConfirmed = true 
+                    EmailConfirmed = true
                 };
 
-               
                 var result = await userManager.CreateAsync(adminUser, "Admin123!");
 
                 if (result.Succeeded)
                 {
                     await userManager.AddToRoleAsync(adminUser, "Admin");
                 }
+            }
+
+            var context = serviceProvider.GetRequiredService<RestaurantApp.Infrastructure.Data.RestaurantDbContext>();
+            var categories = context.Set<RestaurantApp.Domain.Entities.MenuCategory>();
+
+            if (!categories.Any())
+            {
+                categories.AddRange(
+                    new RestaurantApp.Domain.Entities.MenuCategory { Name = "Předkrmy" },
+                    new RestaurantApp.Domain.Entities.MenuCategory { Name = "Hlavní jídla" },
+                    new RestaurantApp.Domain.Entities.MenuCategory { Name = "Dezerty" },
+                    new RestaurantApp.Domain.Entities.MenuCategory { Name = "Nápoje" }
+                );
+                await context.SaveChangesAsync();
             }
         }
     }

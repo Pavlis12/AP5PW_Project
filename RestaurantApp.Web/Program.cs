@@ -34,6 +34,7 @@ builder.Services.AddScoped<RestaurantApp.Application.Interfaces.ICurrentUserServ
 builder.Services.AddControllersWithViews();
 builder.Services.AddScoped(typeof(RestaurantApp.Domain.Interfaces.IRepository<>), typeof(RestaurantApp.Infrastructure.Repositories.Repository<>));
 builder.Services.AddScoped<RestaurantApp.Application.Interfaces.IMenuService, RestaurantApp.Application.Services.MenuService>();
+builder.Services.AddScoped<RestaurantApp.Application.Interfaces.ITableService, RestaurantApp.Application.Services.TableService>();
 var app = builder.Build();
 
 using (var scope = app.Services.CreateScope())

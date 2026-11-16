@@ -1,5 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using RestaurantApp.Application.Interfaces;
+using RestaurantApp.Domain.Interfaces;
 using RestaurantApp.Infrastructure.Data;
 using System.Collections.Generic;
 using System.Threading.Tasks;

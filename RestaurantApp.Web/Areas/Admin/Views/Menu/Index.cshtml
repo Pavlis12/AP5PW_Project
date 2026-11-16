@@ -1,0 +1,45 @@
+﻿@model IEnumerable<RestaurantApp.Domain.Entities.MenuItem>
+
+@{
+    ViewData["Title"] = "Správa jídelního lístku";
+}
+
+<div class="d-flex justify-content-between align-items-center mb-3">
+    <h1>Správa jídelního lístku</h1>
+    <a asp-action="Create" class="btn btn-primary">Přidat nové jídlo</a>
+</div>
+
+<table class="table table-striped table-bordered">
+    <thead class="table-dark">
+        <tr>
+            <th>Název</th>
+            <th>Cena</th>
+            <th style="width: 150px;">Akce</th>
+        </tr>
+    </thead>
+    <tbody>
+        @if (!Model.Any())
+        {
+            <tr>
+                <td colspan="3" class="text-center">Zatím nebylo přidáno žádné jídlo.</td>
+            </tr>
+        }
+        else
+        {
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@item.Title</td>
+                    <td>@item.Price Kč</td>
+                    <td>
+                        <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-sm btn-warning">Upravit</a>
+
+                        <form asp-action="Delete" asp-route-id="@item.Id" method="post" style="display:inline;">
+                            <button type="submit" class="btn btn-sm btn-danger" onclick="return confirm('Opravdu chcete toto jídlo smazat?');">Smazat</button>
+                        </form>
+                    </td>
+                </tr>
+            }
+        }
+    </tbody>
+</table>

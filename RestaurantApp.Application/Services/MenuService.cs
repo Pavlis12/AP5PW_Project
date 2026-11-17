@@ -55,5 +55,33 @@ namespace RestaurantApp.Application.Services
         {
             return await _categoryRepository.GetAllAsync();
         }
+
+        public async Task<MenuCategory?> GetCategoryByIdAsync(int id)
+        {
+            return await _categoryRepository.GetByIdAsync(id);
+        }
+
+        public async Task CreateCategoryAsync(MenuCategory category)
+        {
+            await _categoryRepository.AddAsync(category);
+            await _categoryRepository.SaveChangesAsync();
+        }
+
+        public async Task UpdateCategoryAsync(MenuCategory category)
+        {
+            _categoryRepository.Update(category);
+            await _categoryRepository.SaveChangesAsync();
+        }
+
+        public async Task DeleteCategoryAsync(int id)
+        {
+            var category = await _categoryRepository.GetByIdAsync(id);
+            if (category != null)
+            {
+                _categoryRepository.Delete(category);
+                await _categoryRepository.SaveChangesAsync();
+            }
+        }
+
     }
 }

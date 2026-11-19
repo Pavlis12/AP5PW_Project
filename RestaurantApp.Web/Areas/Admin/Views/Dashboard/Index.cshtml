@@ -1,6 +1,50 @@
 ﻿@{
-    ViewData["Title"] = "Admin Dashboard";
+    ViewData["Title"] = "Administrace restaurace";
 }
 
-<h1>Vítejte v administraci</h1>
-<p>Zde budete spravovat položky restaurace.</p>
+<div class="mb-4">
+    <h1>Administrace restaurace</h1>
+    <p class="text-muted">Vyberte sekci, kterou chcete spravovat.</p>
+</div>
+
+<div class="row g-4">
+    <div class="col-md-6">
+        <div class="card h-100 shadow-sm">
+            <div class="card-body d-flex flex-column">
+                <h5 class="card-title">Jídelní lístek</h5>
+                <p class="card-text text-muted">Přidávání, úprava cen, popisů a dostupnosti jednotlivých pokrmů.</p>
+                <a asp-area="Admin" asp-controller="Menu" asp-action="Index" class="btn btn-primary mt-auto">Spravovat jídla</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-6">
+        <div class="card h-100 shadow-sm">
+            <div class="card-body d-flex flex-column">
+                <h5 class="card-title">Kategorie jídel</h5>
+                <p class="card-text text-muted">Správa sekcí jídelního lístku (Předkrmy, Hlavní jídla, Nápoje...).</p>
+                <a asp-area="Admin" asp-controller="Categories" asp-action="Index" class="btn btn-primary mt-auto">Spravovat kategorie</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-6">
+        <div class="card h-100 shadow-sm">
+            <div class="card-body d-flex flex-column">
+                <h5 class="card-title">Stoly v restauraci</h5>
+                <p class="card-text text-muted">Nastavení čísel stolů, jejich kapacity a umístění v podniku.</p>
+                <a asp-area="Admin" asp-controller="Tables" asp-action="Index" class="btn btn-primary mt-auto">Spravovat stoly</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-6">
+        <div class="card h-100 shadow-sm">
+            <div class="card-body d-flex flex-column">
+                <h5 class="card-title">Uživatelé a role</h5>
+                <p class="card-text text-muted">Přehled registrovaných účtů, úprava údajů a přiřazování rolí (Admin / Customer).</p>
+                <a asp-area="Admin" asp-controller="Users" asp-action="Index" class="btn btn-primary mt-auto">Spravovat uživatele</a>
+            </div>
+        </div>
+    </div>
+</div>

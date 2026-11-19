@@ -1,0 +1,44 @@
+﻿@model RestaurantApp.Application.DTOs.UserDto
+
+@{
+    ViewData["Title"] = "Upravit uživatele";
+}
+
+<h1>Upravit uživatele</h1>
+<hr />
+
+<div class="row">
+    <div class="col-md-6">
+        <form asp-action="Edit" method="post">
+            <div asp-validation-summary="All" class="text-danger mb-3"></div>
+            <input type="hidden" asp-for="Id" />
+
+            <div class="form-group mb-3">
+                <label asp-for="UserName" class="control-label">Uživatelské jméno</label>
+                <input asp-for="UserName" class="form-control" />
+                <span asp-validation-for="UserName" class="text-danger"></span>
+            </div>
+
+            <div class="form-group mb-3">
+                <label asp-for="Email" class="control-label">E-mail</label>
+                <input asp-for="Email" class="form-control" />
+                <span asp-validation-for="Email" class="text-danger"></span>
+            </div>
+
+            <div class="form-group mb-3">
+                <label asp-for="Role" class="control-label">Role</label>
+                <select asp-for="Role" asp-items="ViewBag.Roles" class="form-select"></select>
+                <span asp-validation-for="Role" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <button type="submit" class="btn btn-primary">Uložit změny</button>
+                <a asp-action="Index" class="btn btn-secondary">Zpět na výpis</a>
+            </div>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

@@ -1,9 +1,9 @@
 ﻿using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
-using RestaurantApp.Application.DTOs;
-using RestaurantApp.Application.Interfaces;
+using RestaurantApp.Domain.DTOs;
+using RestaurantApp.Domain.Interfaces;
 
-namespace RestaurantApp.Web.Services
+namespace RestaurantApp.Infrastructure.Services
 {
     public class UserService : IUserService
     {

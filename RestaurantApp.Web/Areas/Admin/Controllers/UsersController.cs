@@ -1,8 +1,8 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
-using RestaurantApp.Application.DTOs;
-using RestaurantApp.Application.Interfaces;
+using RestaurantApp.Domain.DTOs;
+using RestaurantApp.Domain.Interfaces;
 
 namespace RestaurantApp.Web.Areas.Admin.Controllers
 {

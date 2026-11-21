@@ -1,6 +1,6 @@
-﻿using RestaurantApp.Application.DTOs;
+﻿using RestaurantApp.Domain.DTOs;
 
-namespace RestaurantApp.Application.Interfaces
+namespace RestaurantApp.Domain.Interfaces
 {
     public interface IUserService
     {

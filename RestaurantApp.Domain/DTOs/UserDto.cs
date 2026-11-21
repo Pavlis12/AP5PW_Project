@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace RestaurantApp.Application.DTOs
+namespace RestaurantApp.Domain.DTOs
 {
     public class UserDto
     {
